@@ -33,7 +33,7 @@ def getTweets():
 				print "object found"
 				if obj["name"] == "tweets_19.txt":
 					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
-					new_file = open("tweets.txt", "w")
+					new_file = open("tweets.txt", "wb")
 					new_file.write(tweet_file)
 					new_file.close()
 					tweet_file.write()
@@ -51,7 +51,7 @@ def readJSON(tweet_file):
 	print "in readJSON"
 	#print tweet_file
 	start_time = time.time()
-	JSONFile = open(new_file, "r")
+	JSONFile = open(tweet_file, "r")
 	tweet_count = 0
 	dictionary = {"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0}
 	print "tweet_count set and dictionary"

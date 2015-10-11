@@ -33,6 +33,7 @@ def getTweets():
 				print "object found"
 				if obj["name"] == "tweets_19.txt":
 					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
+					print "start read file"
 					dictionary_temp = Counter(readJSON(tweet_file))
 					dictionary_all = dictionary_all + dictionary_temp
 
@@ -42,6 +43,7 @@ def getTweets():
 
 @app.task
 def readJSON(tweet_file):
+	print "in readJSON"
 	start_time = time.time()
 	#JSONFile = open("DATAFILER/tweets_19.txt", "r")
 	tweet_count = 0

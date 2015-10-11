@@ -18,7 +18,7 @@ def getTweets():
           'key':os.environ['OS_PASSWORD'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}
-    print "config set"
+	print "config set"
 	conn = swiftclient.client.Connection(auth_version=2, **config)
 	print "conn set"
 	#start = time.time()

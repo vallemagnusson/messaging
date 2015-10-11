@@ -52,13 +52,14 @@ def readJSON(tweet_file):
 	#for line in JSONFile:
 	for line in tweet_file:
 		try:
-			print "there is an tweet!!!"
 			data = json.loads(line)
 			if data["retweet_count"] == 0:
+				print "its not an retweet!!!"
 				tweet_count += 1
 				word_list = data["text"].lower().split()
 				for i in dictionary.keys():
 					if i in word_list:
+						print "its in the dictionary!!!"
 						dictionary[i] += 1
 						if i == "denne":
 							print dictionary[i]

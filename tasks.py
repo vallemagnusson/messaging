@@ -34,6 +34,7 @@ def getTweets():
 					dictionary_all = dictionary_all + dictionary_temp
 
 	return dictionary_all
+	return dictionary_temp
 
 
 @app.task
@@ -53,6 +54,8 @@ def readJSON(tweet_file):
 				for i in dictionary.keys():
 					if i in word_list:
 						dictionary[i] += 1
+						if i == "denne":
+							print dictionary[i]
 		except:
 			pass
 

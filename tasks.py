@@ -31,7 +31,7 @@ def getTweets():
 			(response, object_list) = conn.get_container(bucket["name"])
 			for obj in object_list:
 				print "object found"
-				if obj["name"] == "tweets_19.txt":
+				if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
 					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
 					new_file = open("tweets.txt", "w")
 					new_file.write(tweet_file)
@@ -58,7 +58,7 @@ def readJSON(tweet_file):
 	for line in JSONFile:
 	#for line in new_file:
 		try:
-			print line
+			#print line
 			data = json.loads(line)
 			#print data
 			if data["retweet_count"] == 0:

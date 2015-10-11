@@ -11,15 +11,15 @@ from collections import Counter
 
 app = Celery('tasks', backend='amqp', broker='amqp://')
 
-config = {'user':os.environ['OS_USERNAME'], 
+@app.task
+def getTweets():
+	config = {'user':os.environ['OS_USERNAME'], 
           'key':os.environ['OS_PASSWORD'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}
 
-conn = swiftclient.client.Connection(auth_version=2, **config)
-
-@app.task
-def getTweets():
+	conn = swiftclient.client.Connection(auth_version=2, **config)
+	
 	#start = time.time()
 	dictionary_all = {"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0}
 	(response, bucket_list) = conn.get_account()

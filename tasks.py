@@ -45,7 +45,7 @@ def getTweets():
 @app.task
 def readJSON(tweet_file):
 	print "in readJSON"
-	print tweet_file
+	#print tweet_file
 	start_time = time.time()
 	#JSONFile = open("DATAFILER/tweets_19.txt", "r")
 	tweet_count = 0
@@ -54,6 +54,7 @@ def readJSON(tweet_file):
 	#for line in JSONFile:
 	for line in tweet_file:
 		try:
+			print line
 			data = json.loads(line)
 			#print data
 			if data["retweet_count"] == 0:

@@ -48,10 +48,11 @@ def readJSON(tweet_file):
 	#JSONFile = open("DATAFILER/tweets_19.txt", "r")
 	tweet_count = 0
 	dictionary = {"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0}
-
+	print "tweet_count set and dictionary"
 	#for line in JSONFile:
 	for line in tweet_file:
 		try:
+			print "there is an tweet!!!"
 			data = json.loads(line)
 			if data["retweet_count"] == 0:
 				tweet_count += 1

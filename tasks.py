@@ -53,6 +53,7 @@ def readJSON(tweet_file):
 	for line in tweet_file:
 		try:
 			data = json.loads(line)
+			print data
 			if data["retweet_count"] == 0:
 				print "its not an retweet!!!"
 				tweet_count += 1

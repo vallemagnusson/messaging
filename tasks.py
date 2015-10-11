@@ -19,7 +19,7 @@ def getTweets():
           'authurl':os.environ['OS_AUTH_URL']}
 
 	conn = swiftclient.client.Connection(auth_version=2, **config)
-	
+
 	#start = time.time()
 	dictionary_all = {"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0}
 	(response, bucket_list) = conn.get_account()
@@ -31,7 +31,7 @@ def getTweets():
 				if obj["name"] == "tweets_19.txt":
 					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
 					dictionary_temp = readJSON(tweet_file)
-					dictionary_all = Counter(dictionary_all, dictionary_temp)
+					dictionary_all = Counter(dictionary_all + dictionary_temp)
 
 	return dictionary_all
 

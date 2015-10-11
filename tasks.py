@@ -18,17 +18,19 @@ def getTweets():
           'key':os.environ['OS_PASSWORD'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}
-
+    print "config set"
 	conn = swiftclient.client.Connection(auth_version=2, **config)
-
+	print "conn set"
 	#start = time.time()
 	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
 	(response, bucket_list) = conn.get_account()
 	for bucket in bucket_list:
 		if bucket['name'] == "tweets":
 			#print bucket['name']
+			print "bucket found"
 			(response, object_list) = conn.get_container(bucket["name"])
 			for obj in object_list:
+				print "object found"
 				if obj["name"] == "tweets_19.txt":
 					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
 					dictionary_temp = Counter(readJSON(tweet_file))

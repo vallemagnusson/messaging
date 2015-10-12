@@ -34,7 +34,7 @@ def getTweets():
 				print "object found"
 				#if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
 				(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
-				new_file = open("tweets.txt", "w")
+				new_file = open(obj["name"], "w")
 				new_file.write(tweet_file)
 				new_file.close()
 
@@ -42,7 +42,8 @@ def getTweets():
 				#print tweet_file
 				dictionary_temp = Counter(readJSON("tweets.txt"))
 				dictionary_all = dictionary_all + dictionary_temp
-				
+				os.remove(obj["name"])
+
 	stop_time_getTweets = time.time()
 	print "All done!!!"
 	print "Total time was: " + str(stop_time_getTweets - start_time_getTweets)

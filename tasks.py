@@ -19,9 +19,9 @@ def getTweets():
           'key':os.environ['OS_PASSWORD'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}
-	print "config set"
+	#print "config set"
 	conn = swiftclient.client.Connection(auth_version=2, **config)
-	print "conn set"
+	#print "conn set"
 	#start = time.time()
 	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
 	(response, bucket_list) = conn.get_account()
@@ -90,7 +90,7 @@ def readJSON(tweet_file):
 	
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	print "Tweet file: " + str(tweet_file)
-	print "Number of tweets: " + str(tweet_count)
+	#print "Number of tweets: " + str(tweet_count)
 	print "Time used: " + str(stop_time - start_time)
 	print dictionary
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"

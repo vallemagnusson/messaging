@@ -13,6 +13,7 @@ app = Celery('tasks', backend='amqp', broker='amqp://')
 
 @app.task
 def getTweets():
+	start_time_getTweets = time.time()
 	print "getTweets started"
 	config = {'user':os.environ['OS_USERNAME'], 
           'key':os.environ['OS_PASSWORD'],
@@ -31,17 +32,20 @@ def getTweets():
 			(response, object_list) = conn.get_container(bucket["name"])
 			for obj in object_list:
 				print "object found"
-				if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
-					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
-					new_file = open("tweets.txt", "w")
-					new_file.write(tweet_file)
-					new_file.close()
+				#if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
+				(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
+				new_file = open("tweets.txt", "w")
+				new_file.write(tweet_file)
+				new_file.close()
 
-					print "start read file"
-					#print tweet_file
-					dictionary_temp = Counter(readJSON("tweets.txt"))
-					dictionary_all = dictionary_all + dictionary_temp
-
+				print "start read file"
+				#print tweet_file
+				dictionary_temp = Counter(readJSON("tweets.txt"))
+				dictionary_all = dictionary_all + dictionary_temp
+				
+	stop_time_getTweets = time.time()
+	print "All done!!!"
+	print "Total time was: " + str(stop_time_getTweets - start_time_getTweets)
 	return dictionary_all
 	return dictionary_temp
 
@@ -77,6 +81,7 @@ def readJSON(tweet_file):
 	stop_time = time.time()
 	
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print "Tweet file: " + str(tweet_file)
 	print "Number of tweets: " + str(tweet_count)
 	print "Time used: " + str(stop_time - start_time)
 	print dictionary

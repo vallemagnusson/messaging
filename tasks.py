@@ -46,7 +46,7 @@ def getTweets():
 
 				#print tweet_file
 				start_time_parse_file = time.time()
-				dictionary_temp = Counter(readJSON("tweets.txt"))
+				dictionary_temp = Counter(readJSON(obj["name"]))
 				stop_time_parse_file = time.time()
 				print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
 				dictionary_all = dictionary_all + dictionary_temp

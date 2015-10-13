@@ -1,7 +1,6 @@
 #!flask/bin/python
 from celery import Celery
-from celery import group
-from flask import Flask, jsonify
+from flask import Flask
 import subprocess
 import sys
 import os
@@ -16,7 +15,9 @@ def start():
 	#return "hello world", 200
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	primes = getTweets.delay()
+	primes = 1
+	#primes = getTweets.delay()
+	print "primes"
 	print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	print primes.ready()

@@ -8,11 +8,10 @@ import os
 import swiftclient.client
 import json
 import time
-from collections import Counter
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET'])
+@app.route("/")
 def start():
 	#return "hello world", 200
 	print "start"

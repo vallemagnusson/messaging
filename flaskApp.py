@@ -14,8 +14,8 @@ def start():
 	#return "hello world", 200
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	primes = 1
-	#primes = getTweets.delay()
+	#primes = 1
+	primes = getTweets.delay()
 	print "primes"
 	print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

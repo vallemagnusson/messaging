@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask
+from tasks import getTweets
 
 app = Flask(__name__)
 

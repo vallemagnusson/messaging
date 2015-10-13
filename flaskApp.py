@@ -5,7 +5,6 @@ import subprocess
 import sys
 import os
 import swiftclient.client
-import json
 import time
 
 app = Flask(__name__)

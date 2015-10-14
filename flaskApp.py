@@ -38,7 +38,7 @@ def start():
 		n += 1
 	#return primes.get()
 	print primes.ready()
-	print primes
+	print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	return "hej pa dig"
 	#return "hello world", 200

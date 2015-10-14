@@ -15,7 +15,7 @@ app = Celery('tasks', backend='amqp', broker='amqp://')
 def getTweets():
 	start_time_getTweets = time.time()
 	print "getTweets started"
-	config = {'user':os.environ['OS_USERNAME'], 
+	config = {'username':os.environ['OS_USERNAME'], 
           'key':os.environ['OS_PASSWORD'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}

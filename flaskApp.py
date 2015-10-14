@@ -25,6 +25,7 @@ def start():
 	#	time.delay(5)
 	#print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	return "hej på dig"
 
 
 if __name__ == "__main__":

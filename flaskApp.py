@@ -2,6 +2,7 @@
 from celery import Celery
 from celery import group
 from flask import Flask, jsonify
+from tasks import getTweets
 import subprocess
 import sys
 import os
@@ -9,7 +10,7 @@ import swiftclient.client
 import json
 import time
 from collections import Counter
-appC = Celery('tasks', backend='amqp', broker='amqp://')
+#appC = Celery('tasks', backend='amqp', broker='amqp://')
 app = Flask(__name__)
 
 @app.route("/messaging", methods=['GET'])

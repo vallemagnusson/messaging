@@ -33,24 +33,24 @@ def getTweets():
 			for obj in object_list:
 				print "object found"
 				start_time_download_file = time.time()
-				#if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
-				(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
-				stop_time_download_file = time.time()
-				print "Time to download file: " + str(stop_time_download_file - start_time_download_file)
-				start_time_write_file = time.time()
-				new_file = open(obj["name"], "w")
-				new_file.write(tweet_file)
-				new_file.close()
-				stop_time_write_file = time.time()
-				print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
+				if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
+					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
+					stop_time_download_file = time.time()
+					print "Time to download file: " + str(stop_time_download_file - start_time_download_file)
+					start_time_write_file = time.time()
+					new_file = open(obj["name"], "w")
+					new_file.write(tweet_file)
+					new_file.close()
+					stop_time_write_file = time.time()
+					print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
 
-				#print tweet_file
-				start_time_parse_file = time.time()
-				dictionary_temp = Counter(readJSON(obj["name"]))
-				stop_time_parse_file = time.time()
-				print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
-				dictionary_all = dictionary_all + dictionary_temp
-				os.remove(obj["name"])
+					#print tweet_file
+					start_time_parse_file = time.time()
+					dictionary_temp = Counter(readJSON(obj["name"]))
+					stop_time_parse_file = time.time()
+					print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
+					dictionary_all = dictionary_all + dictionary_temp
+					os.remove(obj["name"])
 
 	stop_time_getTweets = time.time()
 	print "All done!!!"

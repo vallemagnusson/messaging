@@ -19,7 +19,7 @@ def start():
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
 	test = getTweets()
-	primes = test.apply_async()
+	primes = test.delay()
 	print "primes"
 	#print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

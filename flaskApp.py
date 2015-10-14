@@ -9,7 +9,7 @@ import os
 import swiftclient.client
 import json
 import time
-#from collections import Counter
+from collections import Counter
 #appC = Celery('tasks', backend='amqp', broker='amqp://')
 app = Flask(__name__)
 
@@ -36,7 +36,7 @@ def start():
 		print primes.ready()
 		time.sleep(1)
 	#	n += 1
-	#return primes.get()
+	return primes.get()
 	print primes.ready()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	return "hej pa dig"

@@ -24,7 +24,7 @@ def start():
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
 	tweets = group(getTweets.s())
-	primes = tweets.apply_async()
+	primes = tweets.delay()
 	print "primes"
 	print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

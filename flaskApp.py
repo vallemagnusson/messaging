@@ -18,7 +18,7 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	tweets = getTweets.s()
+	tweets = getTweets()
 	primes = tweets.delay()
 	print "primes"
 	print primes

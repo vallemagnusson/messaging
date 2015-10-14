@@ -28,7 +28,7 @@ def start():
 	n = 0
 	while primes.ready() == False:
 		print "Waited " + str(n) + " seconds"
-		time.delay(1)
+		time.sleep(1)
 		n += 1
 	return primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

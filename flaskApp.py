@@ -14,7 +14,7 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	#primes = getTweets.delay()
+	primes = getTweets.delay()
 	print "primes"
 	#print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
@@ -29,4 +29,4 @@ def start():
 
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", debug=True)
+	app.run(host="0.0.0.0", debug=True )

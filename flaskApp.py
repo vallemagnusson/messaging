@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def start():
-	return "hello world", 200
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1

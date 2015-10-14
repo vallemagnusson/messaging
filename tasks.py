@@ -55,6 +55,7 @@ def getTweets():
 	stop_time_getTweets = time.time()
 	print "All done!!!"
 	print "Total time was: " + str(stop_time_getTweets - start_time_getTweets)
+	print dictionary_all
 	return dictionary_all
 
 @app.task

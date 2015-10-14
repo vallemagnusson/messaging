@@ -12,7 +12,7 @@ from collections import Counter
 
 app = Flask(__name__)
 
-@app.route("/test", methods=['GET'])
+@app.route("/messaging", methods=['GET'])
 def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

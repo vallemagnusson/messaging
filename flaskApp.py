@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def start():
-	#return "hello world", 200
+	return "hello world", 200
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
@@ -25,7 +25,7 @@ def start():
 	#	time.delay(5)
 	#print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	return "hej pa dig"
+	#return "hej pa dig"
 
 
 if __name__ == "__main__":

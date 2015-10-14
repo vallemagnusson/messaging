@@ -37,7 +37,7 @@ def start():
 		time.sleep(1)
 		n += 1
 	#return primes.get()
-	print primes.state()
+	print primes.state
 	print primes.ready()
 	#print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

@@ -15,15 +15,15 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	primes = getTweets.delay()
+	#primes = getTweets.delay()
 	print "primes"
-	print primes
+	#print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	print primes.ready()
+	#print primes.ready()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	while primes.ready() == False:
-		time.delay(5)
-	print primes.get()
+	#while primes.ready() == False:
+	#	time.delay(5)
+	#print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 
 

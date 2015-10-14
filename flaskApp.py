@@ -13,7 +13,7 @@ import time
 #appC = Celery('tasks', backend='amqp', broker='amqp://')
 app = Flask(__name__)
 
-@app.route("/messaging", methods=['GET'])
+@app.route("/messaging")#, methods=['GET'])
 def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

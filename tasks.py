@@ -13,7 +13,7 @@ app = Celery('tasks', backend='amqp', broker='amqp://')
 
 @app.task
 def getTweets():
-	os.system("source ../source")
+	os.system("source ../sourceFile.sh")
 
 	start_time_getTweets = time.time()
 	print "getTweets started"

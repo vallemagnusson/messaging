@@ -13,16 +13,14 @@ app = Celery('tasks', backend='amqp', broker='amqp://')
 
 @app.task
 def getTweets():
-	os.system("source ../sourceFile.sh")
-
 	start_time_getTweets = time.time()
 	print "getTweets started"
-	config = {'username':os.environ['OS_USERNAME'], 
-          'key':os.environ['OS_PASSWORD'],
-          'tenant_name':os.environ['OS_TENANT_NAME'],
-          'authurl':os.environ['OS_AUTH_URL']}
+	#config = {'username':os.environ['OS_USERNAME'], 
+    #      'key':os.environ['OS_PASSWORD'],
+    #      'tenant_name':os.environ['OS_TENANT_NAME'],
+    #      'authurl':os.environ['OS_AUTH_URL']}
 	#print "config set"
-	conn = swiftclient.client.Connection(auth_version=2, **config)
+	conn = swiftclient.client.Connection(auth_version=2, authurl=OS_AUTH_URL=http://smog.uppmax.uu.se:5000/v2.0)
 	#print "conn set"
 	#start = time.time()
 	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})

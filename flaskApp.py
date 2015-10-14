@@ -18,10 +18,10 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	test = getTweets()
-	primes = test.delay()
+	tweets = getTweets()
+	primes = tweets.delay()
 	print "primes"
-	#print primes
+	print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	print primes.ready()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

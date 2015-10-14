@@ -33,7 +33,7 @@ def getTweets():
 			for obj in object_list:
 				print "object found"
 				start_time_download_file = time.time()
-				if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
+				if obj["name"] == "tweets_19.txt": # or obj["name"] == "tweets_18.txt":
 					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
 					stop_time_download_file = time.time()
 					print "Time to download file: " + str(stop_time_download_file - start_time_download_file)

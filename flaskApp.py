@@ -35,9 +35,10 @@ def start():
 		print "Waited " + str(n) + " seconds"
 		print primes.ready()
 		time.sleep(1)
-	#	n += 1
-	return primes.get()
+		n += 1
+	#return primes.get()
 	print primes.ready()
+	print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	return "hej pa dig"
 	#return "hello world", 200

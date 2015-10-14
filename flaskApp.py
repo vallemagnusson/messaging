@@ -9,7 +9,7 @@ import swiftclient.client
 import json
 import time
 from collections import Counter
-
+appC = Celery('tasks', backend='amqp', broker='amqp://')
 app = Flask(__name__)
 
 @app.route("/messaging", methods=['GET'])

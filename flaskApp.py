@@ -26,6 +26,7 @@ def start():
 	#print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#return "hej pa dig"
+	return "hello world", 200
 
 
 if __name__ == "__main__":

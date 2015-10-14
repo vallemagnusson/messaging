@@ -30,7 +30,7 @@ def start():
 		print "Waited " + str(n) + " seconds"
 		#time.sleep(1)
 		n += 1
-	return primes.get()
+	#return primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#return "hej pa dig"
 	#return "hello world", 200

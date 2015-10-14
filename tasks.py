@@ -56,7 +56,7 @@ def getTweets():
 	print "All done!!!"
 	print "Total time was: " + str(stop_time_getTweets - start_time_getTweets)
 	print dictionary_all
-	return dictionary_all
+	return "dictionary_all"
 
 @app.task
 def readJSON(tweet_file):

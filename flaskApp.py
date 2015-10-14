@@ -18,7 +18,7 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	tweets = getTweets()
+	tweets = getTweets.s()
 	primes = tweets.delay()
 	print "primes"
 	print primes
@@ -28,7 +28,7 @@ def start():
 	n = 0
 	while primes.ready() == False:
 		print "Waited " + str(n) + " seconds"
-		time.sleep(1)
+		time.delay(1)
 		n += 1
 	return primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

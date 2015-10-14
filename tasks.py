@@ -20,7 +20,7 @@ def getTweets():
     #      'tenant_name':os.environ['OS_TENANT_NAME'],
     #      'authurl':os.environ['OS_AUTH_URL']}
 	#print "config set"
-	conn = swiftclient.client.Connection(auth_version=2, authurl="OS_AUTH_URL=http://smog.uppmax.uu.se:5000/v2.0")
+	conn = swiftclient.client.Connection(auth_version=2, authurl="http://smog.uppmax.uu.se:5000/v2.0")#, tenant_name="3c9d997982e04c6db0e02b82fa18fdd8")
 	#print "conn set"
 	#start = time.time()
 	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})

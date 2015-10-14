@@ -18,19 +18,19 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-
-	primes = getTweets.delay()
+	tweets = getTweets()
+	primes = tweets.delay()
 	print "primes"
-	#print primes
-	#print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print primes
+	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#print primes.ready()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	n = 0
 	while primes.ready() == False:
 		print "Waited " + str(n) + " seconds"
-		#time.sleep(1)
+		time.sleep(1)
 		n += 1
-	#return primes.get()
+	return primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#return "hej pa dig"
 	#return "hello world", 200

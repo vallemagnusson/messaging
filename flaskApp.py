@@ -17,13 +17,13 @@ config = {'user':os.environ['OS_USERNAME'],
           'key':os.environ['OS_PASSWORD'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}
-          
+
 @app.route("/messaging")#, methods=['GET'])
 def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	tweets = group(getTweets.s())
+	tweets = group(getTweets.s(), getTweets.s())
 	primes = tweets.apply_async()
 	print "primes"
 	print primes

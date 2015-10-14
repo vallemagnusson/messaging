@@ -17,7 +17,7 @@ def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	#primes = 1
-	test = getTweets()
+	test = getTweets.s()
 	primes = test.apply_async()
 	print "primes"
 	#print primes

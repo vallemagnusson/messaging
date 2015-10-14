@@ -18,7 +18,7 @@ config = {'user':os.environ['OS_USERNAME'],
           'tenant_name':os.environ['OS_TENANT_NAME'],
           'authurl':os.environ['OS_AUTH_URL']}
 
-@app.route("/messaging")#, methods=['GET'])
+@app.route("/messaging", methods=['GET'])
 def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

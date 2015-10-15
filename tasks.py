@@ -107,4 +107,4 @@ def readJSON(tweet_file):
 	#print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	dictionary.update({"tweet_count": tweet_count})
 	return dictionary
-getTweets()
+#getTweets()

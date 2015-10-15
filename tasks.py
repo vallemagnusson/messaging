@@ -36,18 +36,19 @@ def getTweets(tweetFileList):
 			print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
 
 			start_time_parse_file = time.time()
-			dictionary_temp = Counter(readJSON(tweetFile))
+			dictionary_temp = readJSON(tweetFile)
+			#dictionary_temp = Counter(readJSON(tweetFile))
 			stop_time_parse_file = time.time()
 			print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
-			dictionary_all = dictionary_all + dictionary_temp
+			#dictionary_all = dictionary_all + dictionary_temp
 			os.remove(tweetFile)
 			print "Total time for file: " + str(stop_time_parse_file - start_time_download_file)
 
 	stop_time_getTweets = time.time()
 	print "All done!!!"
 	print "Total time was: " + str(stop_time_getTweets - start_time_getTweets)
-	print dictionary_all
-	return dictionary_all
+	print dictionary_temp
+	return dictionary_temp
 
 @app.task
 def readJSON(tweet_file):

@@ -26,19 +26,25 @@ def start():
 		responseList.append(getTweets.delay([tweetFile]))
 	n = 0
 
-	#get = [t.get() for t in responseList]
+	get = [t.get() for t in responseList]
 
-	print responseList
+
 	total_dictionary = Counter({})
-	for test in responseList:
-		total_dictionary = Counter(test)
+	for t in get:
+		total_dictionary.update(t)
+
+	return dict(total_dictionary)
+	#print responseList
+	
+	#for test in responseList:
+	#	total_dictionary = Counter(test)
 
 	#while primes.ready() == False:
 	#	print "Waited " + str(n) + " seconds"
 	#	#print primes.ready()
 	#	time.sleep(5)
 	#	n += 5
-	return jsonify(total_dictionary), 200
+	#return jsonify(total_dictionary), 200
 	#print primes.state
 	#print primes.ready()
 	#print primes.get()

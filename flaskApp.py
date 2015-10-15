@@ -28,7 +28,7 @@ def start():
 	print responseList
 	total_dictionary = Counter()
 	for test in responseList:
-		total_dictionary = total_dictionary + Counter(test)
+		total_dictionary = Counter(test + total_dictionary)
 
 	#while primes.ready() == False:
 	#	print "Waited " + str(n) + " seconds"

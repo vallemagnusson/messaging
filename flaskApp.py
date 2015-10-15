@@ -17,9 +17,11 @@ app = Flask(__name__)
 def start():
 	print "start"
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
+	tweetFileList = urllib2.urlopen(urlRequest).read().split()
 	#primes = 1
 	#tweets = group(getTweets.s())
-	primes = getTweets.delay()
+	primes = getTweets.delay(tweetFileList)
 	print "primes"
 	print primes
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

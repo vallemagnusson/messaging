@@ -10,6 +10,7 @@ import swiftclient.client
 import json
 import time
 from collections import Counter
+import urllib2
 #appC = Celery('tasks', backend='amqp', broker='amqp://')
 app = Flask(__name__)
 

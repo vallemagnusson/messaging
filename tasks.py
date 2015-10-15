@@ -36,7 +36,7 @@ def getTweets():
 			#(response, object_list) = conn.get_container(bucket["name"])
 			#for obj in object_list:
 				#print "object found"
-				if tweetFile == "tweets_19.txt": # or obj["name"] == "tweets_18.txt":
+				if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
 					print "- - - - - - - - - " + tweetFile + " - - - - - - - - -"
 					start_time_download_file = time.time()
 					#(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])

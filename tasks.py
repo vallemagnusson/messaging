@@ -16,28 +16,11 @@ app = Celery('tasks', backend='amqp', broker='amqp://')
 def getTweets(tweetFileList):
 	start_time_getTweets = time.time()
 	print "getTweets started"
-	#config = {'username':os.environ['OS_USERNAME'], 
-    #      'key':os.environ['OS_PASSWORD'],
-    #      'tenant_name':os.environ['OS_TENANT_NAME'],
-    #      'authurl':os.environ['OS_AUTH_URL']}
-	#print "config set"
-	#conn = swiftclient.client.Connection(auth_version=2, **config)
-	#print "conn set"
-	#start = time.time()
 	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
-	#(response, bucket_list) = conn.get_account()
 	for tweetFile in tweetFileList:
-	#for bucket in bucket_list:
-		#if bucket['name'] == "tweets":
-			#print bucket['name']
-			#print "bucket found"
-			#(response, object_list) = conn.get_container(bucket["name"])
-			#for obj in object_list:
-				#print "object found"
 		if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
 			print "- - - - - - - - - " + tweetFile + " - - - - - - - - -"
 			start_time_download_file = time.time()
-			#(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
 			urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
 			urlResponse = urllib2.urlopen(urlRequest).read()
 			stop_time_download_file = time.time()
@@ -52,7 +35,6 @@ def getTweets(tweetFileList):
 
 			print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
 
-			#print tweet_file
 			start_time_parse_file = time.time()
 			dictionary_temp = Counter(readJSON(tweetFile))
 			stop_time_parse_file = time.time()

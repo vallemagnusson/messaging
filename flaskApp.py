@@ -23,10 +23,13 @@ def start():
 	#primes = getTweets.delay(tweetFileList)
 	responseList = []
 	for tweetFile in tweetFileList:
-		responseList.append(getTweets.s([tweetFile]).delay())
+		responseList.append(getTweets.delay([tweetFile]))
 	n = 0
+
+	#get = [t.get() for t in responseList]
+
 	print responseList
-	total_dictionary = Counter()
+	total_dictionary = Counter({})
 	for test in responseList:
 		total_dictionary = Counter(test)
 

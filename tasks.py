@@ -37,6 +37,7 @@ def getTweets():
 			#for obj in object_list:
 				#print "object found"
 			#	if tweetFile == "tweets_19.txt": # or obj["name"] == "tweets_18.txt":
+					print "- - - - - - - - - " + tweetFile + " - - - - - - - - -"
 					start_time_download_file = time.time()
 					#(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
 					urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
@@ -60,6 +61,7 @@ def getTweets():
 					print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
 					dictionary_all = dictionary_all + dictionary_temp
 					os.remove(tweetFile)
+					print "Total time for file: " + str(stop_time_parse_file - start_time_download_file)
 
 	stop_time_getTweets = time.time()
 	print "All done!!!"
@@ -69,7 +71,7 @@ def getTweets():
 
 @app.task
 def readJSON(tweet_file):
-	print "in readJSON"
+	#print "in readJSON"
 	#print tweet_file
 	start_time = time.time()
 	JSONFile = open(tweet_file, "r")
@@ -97,12 +99,12 @@ def readJSON(tweet_file):
 
 	stop_time = time.time()
 	
-	print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	print "Tweet file: " + str(tweet_file)
+	#print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	#print "Tweet file: " + str(tweet_file)
 	#print "Number of tweets: " + str(tweet_count)
-	print "Time used: " + str(stop_time - start_time)
-	print dictionary
-	print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	#print "Time used in readJSON: " + str(stop_time - start_time)
+	#print dictionary
+	#print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	dictionary.update({"tweet_count": tweet_count})
 	return dictionary
 getTweets()

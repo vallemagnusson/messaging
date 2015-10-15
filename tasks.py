@@ -16,7 +16,8 @@ app = Celery('tasks', backend='amqp', broker='amqp://mava:orkarinte@130.238.29.1
 def getTweets(tweetFileList):
 	start_time_getTweets = time.time()
 	print "getTweets started"
-	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
+	#dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
+	dictionary_all = {}
 	for tweetFile in tweetFileList:
 		if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
 			print "- - - - - - - - - " + tweetFile + " - - - - - - - - -"
@@ -40,7 +41,7 @@ def getTweets(tweetFileList):
 			#dictionary_temp = Counter(readJSON(tweetFile))
 			stop_time_parse_file = time.time()
 			print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
-			#dictionary_all = dictionary_all + dictionary_temp
+			dictionary_all = dictionary_temp
 			os.remove(tweetFile)
 			print "Total time for file: " + str(stop_time_parse_file - start_time_download_file)
 

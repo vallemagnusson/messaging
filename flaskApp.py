@@ -30,7 +30,7 @@ def start():
 		responseList.append(getTweets.delay([tweetFile]))
 		print 5
 	n = 0
-	
+
 	print responseList
 	print 6
 
@@ -42,7 +42,7 @@ def start():
 	for t in get:
 		total_dictionary.update(t)
 
-	return total_dictionary
+	return jsonify(total_dictionary), 200
 	#print responseList
 	
 	#for test in responseList:

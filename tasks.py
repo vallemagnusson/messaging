@@ -34,32 +34,32 @@ def getTweets(tweetFileList):
 			#(response, object_list) = conn.get_container(bucket["name"])
 			#for obj in object_list:
 				#print "object found"
-				if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
-					print "- - - - - - - - - " + tweetFile + " - - - - - - - - -"
-					start_time_download_file = time.time()
-					#(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
-					urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
-					urlResponse = urllib2.urlopen(urlRequest).read()
-					stop_time_download_file = time.time()
+		if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
+			print "- - - - - - - - - " + tweetFile + " - - - - - - - - -"
+			start_time_download_file = time.time()
+			#(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
+			urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
+			urlResponse = urllib2.urlopen(urlRequest).read()
+			stop_time_download_file = time.time()
 
-					print "Time to download file: " + str(stop_time_download_file - start_time_download_file)
+			print "Time to download file: " + str(stop_time_download_file - start_time_download_file)
 
-					start_time_write_file = time.time()
-					new_file = open(tweetFile, "w")
-					new_file.write(urlResponse)
-					new_file.close()
-					stop_time_write_file = time.time()
+			start_time_write_file = time.time()
+			new_file = open(tweetFile, "w")
+			new_file.write(urlResponse)
+			new_file.close()
+			stop_time_write_file = time.time()
 
-					print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
+			print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
 
-					#print tweet_file
-					start_time_parse_file = time.time()
-					dictionary_temp = Counter(readJSON(tweetFile))
-					stop_time_parse_file = time.time()
-					print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
-					dictionary_all = dictionary_all + dictionary_temp
-					os.remove(tweetFile)
-					print "Total time for file: " + str(stop_time_parse_file - start_time_download_file)
+			#print tweet_file
+			start_time_parse_file = time.time()
+			dictionary_temp = Counter(readJSON(tweetFile))
+			stop_time_parse_file = time.time()
+			print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
+			dictionary_all = dictionary_all + dictionary_temp
+			os.remove(tweetFile)
+			print "Total time for file: " + str(stop_time_parse_file - start_time_download_file)
 
 	stop_time_getTweets = time.time()
 	print "All done!!!"

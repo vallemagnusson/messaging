@@ -8,6 +8,7 @@ import sys
 import time
 from celery import Celery
 from collections import Counter
+import urllib2
 
 app = Celery('tasks', backend='amqp', broker='amqp://')
 
@@ -20,37 +21,45 @@ def getTweets():
     #      'tenant_name':os.environ['OS_TENANT_NAME'],
     #      'authurl':os.environ['OS_AUTH_URL']}
 	#print "config set"
-	conn = swiftclient.client.Connection(auth_version=2, authurl="http://smog.uppmax.uu.se:5000/v2.0", tenant_name="3c9d997982e04c6db0e02b82fa18fdd8")
+	#conn = swiftclient.client.Connection(auth_version=2, **config)
 	#print "conn set"
 	#start = time.time()
 	dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
-	(response, bucket_list) = conn.get_account()
-	for bucket in bucket_list:
-		if bucket['name'] == "tweets":
+	#(response, bucket_list) = conn.get_account()
+	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
+	tweetFileList = urllib2.urlopen(urlRequest).read().split()
+	for tweetFile in tweetFileList:
+	#for bucket in bucket_list:
+		#if bucket['name'] == "tweets":
 			#print bucket['name']
-			print "bucket found"
-			(response, object_list) = conn.get_container(bucket["name"])
-			for obj in object_list:
-				print "object found"
-				start_time_download_file = time.time()
-				if obj["name"] == "tweets_19.txt" or obj["name"] == "tweets_18.txt":
-					(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
+			#print "bucket found"
+			#(response, object_list) = conn.get_container(bucket["name"])
+			#for obj in object_list:
+				#print "object found"
+			#	if tweetFile == "tweets_19.txt": # or obj["name"] == "tweets_18.txt":
+					start_time_download_file = time.time()
+					#(response, tweet_file) = conn.get_object(bucket['name'],obj["name"])
+					urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
+					urlResponse = urllib2.urlopen(urlRequest).read()
 					stop_time_download_file = time.time()
+
 					print "Time to download file: " + str(stop_time_download_file - start_time_download_file)
+
 					start_time_write_file = time.time()
-					new_file = open(obj["name"], "w")
-					new_file.write(tweet_file)
+					new_file = open(tweetFile, "w")
+					new_file.write(urlResponse)
 					new_file.close()
 					stop_time_write_file = time.time()
+
 					print "Time to write to file: " + str(stop_time_write_file - start_time_write_file)
 
 					#print tweet_file
 					start_time_parse_file = time.time()
-					dictionary_temp = Counter(readJSON(obj["name"]))
+					dictionary_temp = Counter(readJSON(tweetFile))
 					stop_time_parse_file = time.time()
 					print "Time to parse file: " + str(stop_time_parse_file - start_time_parse_file)
 					dictionary_all = dictionary_all + dictionary_temp
-					os.remove(obj["name"])
+					os.remove(tweetFile)
 
 	stop_time_getTweets = time.time()
 	print "All done!!!"
@@ -96,4 +105,4 @@ def readJSON(tweet_file):
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	dictionary.update({"tweet_count": tweet_count})
 	return dictionary
-#readJSON()
+getTweets()

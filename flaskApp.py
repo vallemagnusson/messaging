@@ -20,16 +20,20 @@ def start():
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
 	tweetFileList = urllib2.urlopen(urlRequest).read().split()
-	primes = getTweets.delay(tweetFileList)
+	#primes = getTweets.delay(tweetFileList)
+	responseList = []
+	for tweetFile in tweetFileList:
+		responseList.append(getTweets.delay(tweetFile))
 	n = 0
-	while primes.ready() == False:
-		print "Waited " + str(n) + " seconds"
-		#print primes.ready()
-		time.sleep(10)
-		n += 10
-	return jsonify(primes.get()), 200
-	print primes.state
-	print primes.ready()
+	print responseList
+	#while primes.ready() == False:
+	#	print "Waited " + str(n) + " seconds"
+	#	#print primes.ready()
+	#	time.sleep(5)
+	#	n += 5
+	#return jsonify(primes.get()), 200
+	#print primes.state
+	#print primes.ready()
 	#print primes.get()
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	print "... ending"

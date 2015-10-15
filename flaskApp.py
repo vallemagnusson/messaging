@@ -28,10 +28,10 @@ def start():
 	n = 0
 	while primes.ready() == False:
 		print "Waited " + str(n) + " seconds"
-		print primes.ready()
+		#print primes.ready()
 		time.sleep(1)
 		n += 1
-	return primes.get()
+	return jsonify(primes.get()), 200
 	print primes.state
 	print primes.ready()
 	#print primes.get()

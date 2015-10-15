@@ -25,9 +25,9 @@ def start():
 	for tweetFile in tweetFileList:
 		responseList.append(getTweets.delay([tweetFile]))
 	n = 0
-
+	
 	get = [t.get() for t in responseList]
-
+	print responseList
 
 	total_dictionary = Counter({})
 	for t in get:

@@ -30,6 +30,7 @@ def start():
 		responseList.append(getTweets.delay([tweetFile]))
 		print 5
 	n = 0
+	print responseList
 	print 6
 
 	get = [t.get() for t in responseList]

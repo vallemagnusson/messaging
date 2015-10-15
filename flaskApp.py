@@ -19,17 +19,24 @@ def start():
 	print "Starting..."
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
+	print 1
 	tweetFileList = urllib2.urlopen(urlRequest).read().split()
+	print 2
 	#primes = getTweets.delay(tweetFileList)
 	responseList = []
+	print 3
 	for tweetFile in tweetFileList:
+		print 4
 		responseList.append(getTweets.delay([tweetFile]))
+		print 5
 	n = 0
-	
+	print 6
+
 	get = [t.get() for t in responseList]
-	print responseList
+	print 7
 
 	total_dictionary = Counter({})
+	print 8
 	for t in get:
 		total_dictionary.update(t)
 

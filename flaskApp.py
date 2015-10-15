@@ -41,7 +41,7 @@ def start():
 	for t in get:
 		total_dictionary.update(t)
 
-	return dict(total_dictionary)
+	return total_dictionary
 	#print responseList
 	
 	#for test in responseList:

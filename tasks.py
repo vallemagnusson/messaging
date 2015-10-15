@@ -38,7 +38,6 @@ def readJSON(tweet_file):
 	JSONFile = open(tweet_file, "r")
 	tweet_count = 0
 	dictionary = {"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0}
-	#print "tweet_count set and dictionary"
 	for line in JSONFile:
 	#for line in new_file:
 		try:

@@ -23,13 +23,12 @@ def start():
 	#primes = getTweets.delay(tweetFileList)
 	responseList = []
 	for tweetFile in tweetFileList:
-		responseList.append(getTweets.apply_async([tweetFile]))
+		responseList.append(getTweets.s([tweetFile]).apply_async())
 	n = 0
 	print responseList
 	total_dictionary = Counter()
 	for test in responseList:
 		total_dictionary = total_dictionary + Counter(test)
-
 
 	#while primes.ready() == False:
 	#	print "Waited " + str(n) + " seconds"

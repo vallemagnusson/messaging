@@ -14,20 +14,20 @@ app = Celery('tasks', backend='amqp', broker='amqp://mava:orkarinte@130.238.29.1
 
 @app.task
 def getTweets(tweetFileList):
-	print "getTweets started"
 	#dictionary_all = Counter({"han": 0, "hon": 0, "den": 0, "det": 0, "denna": 0, "denne": 0, "hen": 0, "tweet_count": 0})
 	dictionary_all = {}
 	for tweetFile in tweetFileList:
-		if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
-			urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
-			urlResponse = urllib2.urlopen(urlRequest).read()
-			new_file = open(tweetFile, "w")
-			new_file.write(urlResponse)
-			new_file.close()
-			dictionary_all = readJSON(tweetFile)
-			#dictionary_temp = Counter(readJSON(tweetFile))
-			#dictionary_all = dictionary_temp
-			os.remove(tweetFile)
+		print "getTweets started with tweetfile: " + str(tweetFile)
+		#if tweetFile == "tweets_19.txt" or tweetFile == "tweets_18.txt":
+		urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
+		urlResponse = urllib2.urlopen(urlRequest).read()
+		new_file = open(tweetFile, "w")
+		new_file.write(urlResponse)
+		new_file.close()
+		dictionary_all = readJSON(tweetFile)
+		#dictionary_temp = Counter(readJSON(tweetFile))
+		#dictionary_all = dictionary_temp
+		os.remove(tweetFile)
 	return dictionary_all
 
 @app.task

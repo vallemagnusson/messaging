@@ -27,8 +27,9 @@ def start():
 
 	print tweetFileList
 	response = group(getTweets.s([tweetFile]) for tweetFile in tweetFileList)
-	response.apply_async()
 	print response
+	response.apply_async()
+	print response.apply_async()
 	n = 0
 	#print responseList
 	#print response.ready()

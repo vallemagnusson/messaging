@@ -37,7 +37,7 @@ def start():
 	#	time.sleep(1)
 	#get = [t.get() for t in responseList]
 	result.get()
-	#total_dictionary = Counter({})
+	total_dictionary = Counter({})
 	#for t in get:
 	for t in result:
 		total_dictionary.update(t)

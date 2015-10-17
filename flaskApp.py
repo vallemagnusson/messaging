@@ -16,32 +16,29 @@ app = Flask(__name__)
 
 @app.route("/messaging", methods=['GET'])
 def start():
+	start_time = time.time()
 	print "Starting..."
 	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
-	print 1
 	tweetFileList = urllib2.urlopen(urlRequest).read().split()
-	print 2
 	#primes = getTweets.delay(tweetFileList)
-	responseList = []
-	print 3
-	for tweetFile in tweetFileList:
-		print 4
-		responseList.append(getTweets.delay([tweetFile]))
-		print 5
+	#responseList = []
+	#for tweetFile in tweetFileList:
+	#	responseList.append(getTweets.delay([tweetFile]))
+	response = group(getTweets.s(tweetFile) for tweetFile in tweetFileList).apply_async()
 	n = 0
-
 	print responseList
-	print 6
 
-	get = [t.get() for t in responseList]
-	print 7
-
+	#get = [t.get() for t in responseList]
+	response.get()
 	total_dictionary = Counter({})
-	print 8
-	for t in get:
+	#for t in get:
+	for t in response:
 		total_dictionary.update(t)
-
+	stop_time = time.time()
+	print "Time used: " + str(stop_time - start_time)
+	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print "... ending"
 	return jsonify(total_dictionary), 200
 	#print responseList
 	
@@ -57,8 +54,7 @@ def start():
 	#print primes.state
 	#print primes.ready()
 	#print primes.get()
-	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	print "... ending"
+	
 	#return "hej pa dig", 200
 	#return "hello world", 200
 

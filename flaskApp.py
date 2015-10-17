@@ -24,7 +24,7 @@ def start():
 	#primes = getTweets.delay(tweetFileList)
 	#responseList = []
 	#for tweetFile in tweetFileList:
-	#	responseList.append(getTweets.delay([tweetFile]))
+
 	print tweetFileList
 	response = group(getTweets.s(tweetFile) for tweetFile in tweetFileList)
 	responseReady = response.apply_async()

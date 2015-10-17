@@ -37,10 +37,11 @@ def start():
 	#	time.sleep(1)
 	#get = [t.get() for t in responseList]
 	result.get()
+	print 3, result.get()
 	total_dictionary = Counter({})
 	#for t in get:
-	for t in result:
-		total_dictionary.update(t)
+	#for t in result:
+	#	total_dictionary.update(t)
 	stop_time = time.time()
 	print 4, "Time used: " + str(stop_time - start_time)
 	print 5, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

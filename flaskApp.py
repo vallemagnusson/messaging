@@ -17,8 +17,8 @@ app = Flask(__name__)
 @app.route("/messaging", methods=['GET'])
 def start():
 	start_time = time.time()
-	print "Starting..."
-	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print 1, "Starting..."
+	print 2, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
 	tweetFileList = urllib2.urlopen(urlRequest).read().split()
 	#primes = getTweets.delay(tweetFileList)
@@ -37,8 +37,8 @@ def start():
 	#	time.sleep(1)
 	#get = [t.get() for t in responseList]
 	result.get()
-	print 2, result.get()
-	print 3, result
+	#print 2, result.get()
+	#print 3, result
 	total_dictionary = Counter()
 	#for t in get:
 	for t in result.get():

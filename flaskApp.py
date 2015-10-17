@@ -31,9 +31,9 @@ def start():
 	print response
 	n = 0
 	#print responseList
-	print response.ready()
-	while response.ready() == False:
-		time.sleep(1)
+	#print response.ready()
+	#while response.ready() == False:
+	#	time.sleep(1)
 	#get = [t.get() for t in responseList]
 	response.get()
 	total_dictionary = Counter({})

@@ -38,7 +38,7 @@ def start():
 	#get = [t.get() for t in responseList]
 	result.get()
 	print 3, result.get()
-	total_dictionary = Counter({})
+	total_dictionary = Counter()
 	#for t in get:
 	for t in result:
 		total_dictionary = total_dictionary + Counter(t)

@@ -27,18 +27,18 @@ def start():
 
 	print tweetFileList
 	response = group(getTweets.s(tweetFile) for tweetFile in tweetFileList)
-	responseReady = response.apply_async()
+	response.apply_async()
 	print response
 	n = 0
 	#print responseList
-	print responseReady.ready()
-	while responseReady.ready() == False:
+	print response.ready()
+	while response.ready() == False:
 		time.sleep(1)
 	#get = [t.get() for t in responseList]
-	responseReady.get()
+	response.get()
 	total_dictionary = Counter({})
 	#for t in get:
-	for t in responseReady:
+	for t in response:
 		total_dictionary.update(t)
 	stop_time = time.time()
 	print "Time used: " + str(stop_time - start_time)

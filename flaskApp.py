@@ -11,16 +11,32 @@ import json
 import time
 from collections import Counter
 import urllib2
-from celery.task.control import inspect
-from celery.worker.control import Panel
+import pika
 
 app = Flask(__name__)
 
 @app.route("/messaging", methods=['GET'])
 def start():
+	connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+	channel = connection.channel()
+
+	channel.queue_declare(queue='task_queue', durable=True)
+	print ' [*] Waiting for messages. To exit press CTRL+C'
+
+	def callback(ch, method, properties, body):
+	    print " [x] Received %r" % (body,)
+	    time.sleep( body.count('.') )
+	    print " [x] Done"
+	    ch.basic_ack(delivery_tag = method.delivery_tag)
+
+	channel.basic_qos(prefetch_count=1)
+	channel.basic_consume(callback, queue='task_queue')
+
+	channel.start_consuming()
+
 	start_time = time.time()
 	print 1, "Starting..."
-	print 2, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print 2,"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
 	tweetFileList = urllib2.urlopen(urlRequest).read().split()
 	#primes = getTweets.delay(tweetFileList)
@@ -31,11 +47,6 @@ def start():
 	response = group(getTweets.s([tweetFile]) for tweetFile in tweetFileList)
 	#print 2, response
 	result = response.apply_async()
-	i = Panel()
-	while result.ready() == False:
-		print 3, i
-		#print 4, i.scheduled()
-		#print 5, i.active()
 	#print 3, response.apply_async()
 	#n = 0
 	#print responseList
@@ -51,9 +62,9 @@ def start():
 	for t in result.get():
 		total_dictionary = total_dictionary + Counter(t)
 	stop_time = time.time()
-	print 6, "Time used: " + str(stop_time - start_time)
-	print 7, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	print 8, "... ending"
+	print 4, "Time used: " + str(stop_time - start_time)
+	print 5, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print 6, "... ending"
 	return jsonify(total_dictionary), 200
 	#print responseList
 	

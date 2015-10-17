@@ -27,7 +27,7 @@ def start():
 	#	responseList.append(getTweets.delay([tweetFile]))
 	print tweetFileList
 	response = group(getTweets.subtask(tweetFile) for tweetFile in tweetFileList).apply_async()
-	
+	print response
 	n = 0
 	#print responseList
 	print response.ready()

@@ -11,6 +11,7 @@ import json
 import time
 from collections import Counter
 import urllib2
+from celery.task.control import inspect
 
 app = Flask(__name__)
 
@@ -29,6 +30,11 @@ def start():
 	response = group(getTweets.s([tweetFile]) for tweetFile in tweetFileList)
 	#print 2, response
 	result = response.apply_async()
+	i = inspect()
+	if result.ready() == False:
+		print 3, i
+		print 4, i.scheduled()
+		print 5, i.active()
 	#print 3, response.apply_async()
 	#n = 0
 	#print responseList
@@ -44,9 +50,9 @@ def start():
 	for t in result.get():
 		total_dictionary = total_dictionary + Counter(t)
 	stop_time = time.time()
-	print 4, "Time used: " + str(stop_time - start_time)
-	print 5, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	print 6, "... ending"
+	print 6, "Time used: " + str(stop_time - start_time)
+	print 7, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print 8, "... ending"
 	return jsonify(total_dictionary), 200
 	#print responseList
 	

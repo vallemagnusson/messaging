@@ -40,8 +40,8 @@ def start():
 	print 3, result.get()
 	total_dictionary = Counter({})
 	#for t in get:
-	#for t in result:
-	#	total_dictionary.update(t)
+	for t in result:
+		total_dictionary = total_dictionary + Counter(t)
 	stop_time = time.time()
 	print 4, "Time used: " + str(stop_time - start_time)
 	print 5, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"

@@ -25,11 +25,11 @@ def start():
 	#responseList = []
 	#for tweetFile in tweetFileList:
 
-	print tweetFileList
+	print 1, tweetFileList
 	response = group(getTweets.s([tweetFile]) for tweetFile in tweetFileList)
-	print response
+	print 2, response
 	response.apply_async()
-	print response.apply_async()
+	print 3, response.apply_async()
 	#n = 0
 	#print responseList
 	#print response.ready()
@@ -42,9 +42,9 @@ def start():
 	for t in get:
 		total_dictionary.update(t)
 	stop_time = time.time()
-	print "Time used: " + str(stop_time - start_time)
-	print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	print "... ending"
+	print 4, "Time used: " + str(stop_time - start_time)
+	print 5, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	print 6, "... ending"
 	return jsonify(total_dictionary), 200
 	#print responseList
 	

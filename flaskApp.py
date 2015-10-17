@@ -12,6 +12,7 @@ import time
 from collections import Counter
 import urllib2
 from celery.task.control import inspect
+from celery.worker.control import Panel
 
 app = Flask(__name__)
 
@@ -30,11 +31,11 @@ def start():
 	response = group(getTweets.s([tweetFile]) for tweetFile in tweetFileList)
 	#print 2, response
 	result = response.apply_async()
-	i = inspect()
-	if result.ready() == False:
+	i = Panel()
+	while result.ready() == False:
 		print 3, i
-		print 4, i.scheduled()
-		print 5, i.active()
+		#print 4, i.scheduled()
+		#print 5, i.active()
 	#print 3, response.apply_async()
 	#n = 0
 	#print responseList

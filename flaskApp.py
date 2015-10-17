@@ -26,18 +26,19 @@ def start():
 	#for tweetFile in tweetFileList:
 	#	responseList.append(getTweets.delay([tweetFile]))
 	print tweetFileList
-	response = group(getTweets.subtask(tweetFile) for tweetFile in tweetFileList).apply_async()
+	response = group(getTweets.stweetFile) for tweetFile in tweetFileList)
+	responseReady = response.apply_async()
 	print response
 	n = 0
 	#print responseList
-	print response.ready()
-	while response.ready() == False:
+	print responseReady.ready()
+	while responseReady.ready() == False:
 		time.sleep(1)
 	#get = [t.get() for t in responseList]
-	response.get()
+	responseReady.get()
 	total_dictionary = Counter({})
 	#for t in get:
-	for t in response:
+	for t in responseReady:
 		total_dictionary.update(t)
 	stop_time = time.time()
 	print "Time used: " + str(stop_time - start_time)

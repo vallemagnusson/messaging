@@ -25,10 +25,11 @@ def start():
 	#responseList = []
 	#for tweetFile in tweetFileList:
 	#	responseList.append(getTweets.delay([tweetFile]))
-	response = group(getTweets.s(tweetFile) for tweetFile in tweetFileList).apply_async()
+	response = group(getTweets.subtask(tweetFile) for tweetFile in tweetFileList).apply_async()
 	n = 0
 	#print responseList
-
+	while response.ready() == False:
+		time.sleep(1)
 	#get = [t.get() for t in responseList]
 	response.get()
 	total_dictionary = Counter({})

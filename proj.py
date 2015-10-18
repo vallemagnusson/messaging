@@ -37,21 +37,36 @@ def convertFile(fileName, mshFile):
 		speed = 10.
 		T = 1
 		os.system("./airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName)
-	return "dictionary_all"
+		##########################################
+		######### Get drag_ligt.m values #########
+		##########################################
+		result = readFile(app.root_path + "results/drag_ligt.m")
+	return result
 
 @app.task
-def readJSON(tweet_file):
-	return "dictionary"
+def readFile(fileName):
+	theFile = open(fileName, "r").read()
+	timeColumn = []
+	liftColumn = []
+	dragColumn = []
+	lines = open(fileName, "r").readlines()
+	for x in range(1, len(lines)):
+		time = lines[x].strip().split()[0]
+		timeColumn.append(time)
+		lift = lines[x].strip().split()[1]
+		liftColumn.append(lift)
+		drag = lines[x].strip().split()[2]
+		dragColumn.append(drag)
+	resultList = []
+	resultList.append(timeColumn)
+	resultList.append(liftColumn)
+	resultList.append(dragColumn)
+	return resultList
 
 
-#################################################################
-#mshDir = os.listdir("msh")
-#for filename in mshDir:
-#	filenameNoExtension = os.path.splitext(filename)[0]
-#	oldFile = "msh/"+str(filename)
-#	newFile = "msh/" + filenameNoExtension + ".xml"
-#	os.system("dolfin-convert " + oldFile + " " + newFile)
-#
 
 
-#dolfin-convert cylinder6.msh out.xml
+
+
+
+

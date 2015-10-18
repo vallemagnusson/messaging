@@ -40,8 +40,8 @@ def convertFile(fileName, mshFile):
 		##########################################
 		######### Get drag_ligt.m values #########
 		##########################################
-		result = readFile(app.root_path + "results/drag_ligt.m")
-	return result
+		resultLists = readFile(app.root_path + "results/drag_ligt.m")
+	return resultLists
 
 @app.task
 def readFile(fileName):

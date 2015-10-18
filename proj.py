@@ -3,9 +3,9 @@
 import os
 import json
 import time
-#import swiftclient.client
 import sys
 import time
+import shutil
 from celery import Celery
 from collections import Counter
 import urllib2
@@ -47,7 +47,7 @@ def convertFile(fileName, mshFile):
 		######### Get drag_ligt.m values #########
 		##########################################
 		resultLists = readFile(fileNameWithoutExtension+"/results/drag_ligt.m")
-		
+		shutil.rmtree(fileNameWithoutExtension)
 		return resultLists
 
 @app.task

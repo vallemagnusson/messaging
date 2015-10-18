@@ -33,8 +33,8 @@ def convertFile(fileName, mshFile):
 		########## Cleaning up dir ###########
 		##########################################
 		os.mkdir(fileNameWithoutExtension)
-		os.rename(fileName, fileNameWithoutExtension+"/"+fileName)
-		os.rename(xmlFileName, fileNameWithoutExtension+"/"+xmlFileName)
+		#os.rename(fileName, fileNameWithoutExtension+"/"+fileName)
+		#os.rename(xmlFileName, fileNameWithoutExtension+"/"+xmlFileName)
 		##########################################
 		########## Run airfoil on file ###########
 		##########################################
@@ -42,11 +42,11 @@ def convertFile(fileName, mshFile):
 		visc = 0.0001
 		speed = 10.
 		T = 1
-		os.system("./airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName)
+		os.system("./"+ fileNameWithoutExtension +"/airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName)
 		##########################################
 		######### Get drag_ligt.m values #########
 		##########################################
-		resultLists = readFile("results/drag_ligt.m")
+		resultLists = readFile(fileNameWithoutExtension+"/results/drag_ligt.m")
 		
 		return resultLists
 

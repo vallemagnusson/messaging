@@ -36,7 +36,7 @@ def convertFile(fileName, mshFile):
 		visc = 0.0001
 		speed = 10.
 		T = 1
-		os.system("./airfoil " + num + " " + visc + " " + speed + " " + T + " " + xmlFileName)
+		os.system("./airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName)
 	return "dictionary_all"
 
 @app.task

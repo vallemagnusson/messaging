@@ -26,7 +26,7 @@ def convertFile(fileName, mshFile):
 		fileNameWithoutExtension = os.path.splitext(fileName)[0]
 		xmlFileName = fileNameWithoutExtension + ".xml"
 		print fileNameWithoutExtension
-		print newFile
+		#print newFile
 		os.system("dolfin-convert " + fileName + " " + xmlFileName)
 		#print newFile.read()
 		##########################################
@@ -40,7 +40,7 @@ def convertFile(fileName, mshFile):
 		##########################################
 		######### Get drag_ligt.m values #########
 		##########################################
-		resultLists = readFile(app.root_path + "results/drag_ligt.m")
+		resultLists = readFile("results/drag_ligt.m")
 		
 		return resultLists
 

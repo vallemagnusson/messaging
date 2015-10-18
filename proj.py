@@ -9,6 +9,7 @@ import shutil
 from celery import Celery
 from collections import Counter
 import urllib2
+import subprocess
 
 app = Celery('proj', backend='amqp', broker='amqp://mava:orkarinte@130.238.29.120:5672/app2')
 
@@ -33,9 +34,10 @@ def convertFile(fileName, mshFile):
 		########## Cleaning up dir ###########
 		##########################################
 		os.mkdir(fileNameWithoutExtension)
-		os.rename("airfoil", fileNameWithoutExtension+"/airfoil")
+		os.copyfile("airfoil", fileNameWithoutExtension+"/airfoil")
 		#os.rename(fileName, fileNameWithoutExtension+"/"+fileName)
 		#os.rename(xmlFileName, fileNameWithoutExtension+"/"+xmlFileName)
+
 		##########################################
 		########## Run airfoil on file ###########
 		##########################################
@@ -43,7 +45,13 @@ def convertFile(fileName, mshFile):
 		visc = 0.0001
 		speed = 10.
 		T = 1
-		os.system("./"+ fileNameWithoutExtension +"/airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName)
+		args = ['mkdir ' + fileNameWithoutExtension,
+				'cp -a airfoil ' + fileNameWithoutExtension + '/airfoil',
+				'cd ' + fileNameWithoutExtension,
+				"./airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName,
+				'cd ..']
+		subprocess.Popen(args)
+		#os.system("./"+ fileNameWithoutExtension +"/airfoil " + str(num) + " " + str(visc) + " " + str(speed) + " " + str(T) + " " + xmlFileName)
 		##########################################
 		######### Get drag_ligt.m values #########
 		##########################################

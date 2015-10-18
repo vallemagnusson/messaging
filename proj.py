@@ -15,7 +15,9 @@ app = Celery('proj', backend='amqp', broker='amqp://mava:orkarinte@130.238.29.12
 @app.task
 def convertFile(fileName, mshFile):
 	print "Started to process file: " + str(fileName)
-	#print fileName
+	##########################################
+	##### Conver file from *msh to *.xml #####
+	##########################################
 	if fileName == "r0a0n200.msh":
 		newFile = open(fileName, "w")
 		newFile.write(mshFile)
@@ -27,7 +29,14 @@ def convertFile(fileName, mshFile):
 		print newFile
 		os.system("dolfin-convert " + fileName + " " + xmlFileName)
 		#print newFile.read()
-		
+		##########################################
+		########## Run airfoil on file ###########
+		##########################################
+		num = 10
+		visc = 0.0001
+		speed = 10.
+		T = 1
+		os.system("./airfoil " + num + " " + visc + " " + speed + " " + T + " " + xmlFileName)
 	return "dictionary_all"
 
 @app.task

@@ -23,12 +23,18 @@ def convertFile(fileName, mshFile):
 		newFile.write(mshFile)
 		newFile = open(fileName, "r")
 		newFile.close()
-		fileNameWithoutExtension = os.path.splitext(fileName)[0]
 		xmlFileName = fileNameWithoutExtension + ".xml"
 		print fileNameWithoutExtension
 		#print newFile
 		os.system("dolfin-convert " + fileName + " " + xmlFileName)
 		#print newFile.read()
+		##########################################
+		########## Cleaning up dir ###########
+		##########################################
+		fileNameWithoutExtension = os.path.splitext(fileName)[0]
+		os.mkdir(fileNameWithoutExtension)
+		os.rename(fileName, fileNameWithoutExtension+"/"+fileName)
+		os.rename(xmlFileName, fileNameWithoutExtension+"/"+xmlFileName)
 		##########################################
 		########## Run airfoil on file ###########
 		##########################################

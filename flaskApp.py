@@ -31,7 +31,7 @@ def start():
 	print 3, "Time used: " + str(stop_time - start_time)
 	print 4, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	print 5, "... ending"
-	return render_template(jsonify(total_dictionary), "Time: " + str(stop_time - start_time)), 200
+	return jsonify(total_dictionary + Counter({"Time": stop_time - start_time})), 200
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", debug=True )

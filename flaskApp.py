@@ -21,7 +21,7 @@ def start():
 	print 2,"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
 	tweetFileList = urllib2.urlopen(urlRequest).read().split()
-	response = group(getTweets.s([tweetFile]) for tweetFile in tweetFileList)
+	response = group(getTweets.s(tweetFile) for tweetFile in tweetFileList)
 	result = response.apply_async()
 	result.get()
 	total_dictionary = Counter()

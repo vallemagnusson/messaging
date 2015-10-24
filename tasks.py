@@ -33,7 +33,7 @@ def readJSON(tweet_file):
 	for line in JSONFile:
 		try:
 			data = ujson.loads(line)
-			if data["retweet_count"] == 0:
+			if "retweeted_status" not in data:
 				tweet_count += 1
 				word_list = data["text"].lower().split()
 				for i in dictionary.keys():

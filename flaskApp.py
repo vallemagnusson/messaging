@@ -19,8 +19,14 @@ def start():
 	start_time = time.time()
 	print 1, "Starting..."
 	print 2,"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
-	tweetFileList = urllib2.urlopen(urlRequest).read().split()
+	##########################
+	content = os.listdir("./")
+	for x in content:
+		if "new" in x:
+			tweetFileList.append(x)
+	##########################
+	#urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
+	#tweetFileList = urllib2.urlopen(urlRequest).read().split()
 	response = group(getTweets.s(tweetFile) for tweetFile in tweetFileList)
 	result = response.apply_async()
 	result.get()

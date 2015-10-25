@@ -17,7 +17,7 @@ import urllib2
 i = 0
 tweetFileList = []
 content = os.listdir("./")
-new_file = open("large_tweets", "w")
+new_file = open("large_tweets.txt", "w")
 new_file.close()
 for x in content:
 	if "tweets" in x:

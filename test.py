@@ -3,8 +3,8 @@ import os
 import urllib2
 
 
-fileList = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
-
+fileList = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
+print fileList
 for tweetFile in fileList:
 	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
 	urlResponse = urllib2.urlopen(urlRequest).read()

@@ -4,16 +4,16 @@ import urllib2
 
 ##### Download all files from container
 
-urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
-tweetFileList = urllib2.urlopen(urlRequest).read().split()
-print tweetFileList
-for tweetFile in tweetFileList:
-	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
-	urlResponse = urllib2.urlopen(urlRequest).read()
-	new_file = open(tweetFile, "w")
-	new_file.write(urlResponse)
-	new_file.close()
-##### Create one larege file
+#urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/")
+#tweetFileList = urllib2.urlopen(urlRequest).read().split()
+#print tweetFileList
+#for tweetFile in tweetFileList:
+#	urlRequest = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets/" + tweetFile)
+#	urlResponse = urllib2.urlopen(urlRequest).read()
+#	new_file = open(tweetFile, "w")
+#	new_file.write(urlResponse)
+#	new_file.close()
+###### Create one larege file
 #i = 0
 #tweetFileList = []
 content = os.listdir("./")

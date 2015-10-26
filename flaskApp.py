@@ -20,6 +20,7 @@ def start():
 	print 1, "Starting..."
 	print 2,"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	##########################
+	tweetFileList = []
 	content = os.listdir("./")
 	for x in content:
 		if "new" in x:
